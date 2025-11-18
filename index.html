@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>brief Croise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- asside -->
+    <aside id="sidebar">
+        <h2>Unassigned Staff</h2>
+        <div id="unassigned_list">
+            <!-- list des employes avec js dans des divs employee-->
+        </div>
+        <button id="Add_New_Worker">Add New Worker</button>
+    </aside>
+    <!-- plan -->
+    <main id="plan">
+        <section class="zone" id="conference" data-role="All">
+            <h3>Salle de conférence</h3>
+            <button class="zone_ajoutBtn">+</button>
+            <div class="zone_liste"><!-- liste avec js --></div>
+        </section>
+
+        <section class="zone" id="reception" data-role="Receptionniste">
+            <h3>Reception</h3>
+            <button class="zone_ajoutBtn">+</button>
+            <div class="zone_liste"></div>
+        </section>
+
+        <section class="zone" id="serveur" data-role="Technicien IT, Manager">
+            <h3>Salle des serveurs</h3>
+            <button class="zone_ajoutBtn">+</button>
+            <div class="zone_liste"></div>
+        </section>
+
+        <section class="zone" id="securite" data-role="Agent de securite">
+            <h3>Salle de securite</h3>
+            <button class="zone_ajoutBtn">+</button>
+            <div class="zone_liste"></div>
+        </section>
+
+        <section class="zone" id="personnel" data-role="All">
+            <h3>Salle du personnel</h3>
+            <button class="zone_ajoutBtn">+</button>
+            <div class="zone_liste"></div>
+        </section>
+
+        <section class="zone" id="archive" data-role="Receptionniste,Technicien IT,Agent de securite,Manager,Autres">
+            <h3>Salle darchives</h3>
+            <button class="zone_ajoutBtn">+</button>
+            <div class="zone_liste"></div>
+        </section>
+    </main>
+    <!--*********modal ajouter nouveau employee******-->
+    <div id="modal_ajouter" class="hidden">
+        <div class="modal_contenu">
+            <span id="modal_ferme">&times;</span>
+            <h2>Nouveau employee</h2>
+            <form id="employee_form">
+                <label>Nom:</label>
+                <input type="text" id="name" required>
+
+                <label>Role:</label>
+                <select id="role" required>
+                    <option value="">choisir le role</option>
+                    <option value="Receptionniste">Receptionniste</option>
+                    <option value="Technicien IT">Technicien IT</option>
+                    <option value="Agent de securite">Agent de securite</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Nettoyage">Nettoyage</option>
+                    <option value="Autres">Autres </option>
+                </select>
+
+                <label>Photo (url):</label>
+                <input type="url" id="urlphoto">
+
+                <label>Email:</label>
+                <input type="email" id="email" required>
+
+                <label>Telephone:</label>
+                <input type="tel" id="phone" required>
+                <div id="experiences">
+                    <h3>Experiences</h3>
+                    <div class="experiences_div">
+                        <input type="text" placeholder="Titre de poste">
+                        <input type="date" placeholder="Date de debut">
+                        <input type="date" placeholder="Date de fin">
+                    </div>
+                    <button type="button" id="ajout_experience">Ajouter experience</button>
+                </div>
+                <button type="submit">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <!--********modal profile employee*********-->
+    <div id="modal_profile" class="hidden">
+        <div class="modalProfile_contenu">
+            <span id="profile_ferme">&times;</span>
+            
+            <img id="profile_photo" src="" alt="Photo de l'employe">
+            <h2 id="profile_name"></h2>
+            <p id="profile_role"></p>
+            <p id="profile_email"></p>
+            <p id="profile_phone"></p>
+            <div id="profile_experiences">
+                <h3>Expériences</h3>
+                <ul></ul>
+            </div>
+            <p id="profile_zone"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
