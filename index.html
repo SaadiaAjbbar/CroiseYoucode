@@ -12,7 +12,7 @@
     <!-- asside -->
     <aside id="sidebar">
         <h2>Unassigned Staff</h2>
-        <div id="unassigned_list">
+        <div id="unassigned_lists">
             <!-- list des employes avec js dans des divs employee-->
         </div>
         <button id="Add_New_Worker">Add New Worker</button>
@@ -61,7 +61,7 @@
             <span id="modal_ferme">&times;</span>
             <h2>Nouveau employee</h2>
             <form id="employee_form">
-                <label>Nom:</label>
+                <label>Nom Complet:</label>
                 <input type="text" id="name" required>
 
                 <label>Role:</label>
@@ -86,9 +86,9 @@
                 <div id="experiences">
                     <h3>Experiences</h3>
                     <div class="experiences_div">
-                        <input type="text" placeholder="Titre de poste">
-                        <input type="date" placeholder="Date de debut">
-                        <input type="date" placeholder="Date de fin">
+                        <input type="text" class="experience_titre" placeholder="Titre de poste">
+                        <input type="date" class="experience_debut" placeholder="Date de debut">
+                        <input type="date" class="experience_fin" placeholder="Date de fin">
                     </div>
                     <button type="button" id="ajout_experience">Ajouter experience</button>
                 </div>
