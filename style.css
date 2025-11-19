@@ -1,0 +1,334 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.hidden{
+    display: none;
+}
+
+/*************** MOBILE FIRST ***************/
+@media screen and (max-width: 767px) {
+
+    body {
+        background-color: black;
+        color: whitesmoke;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        justify-content: center;
+        gap: 20px;
+        margin: 20px;
+    }
+
+    #plan {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        background-image: url(images/planMobil.png);
+        background-size: 100% 100%;
+        height: 500px;
+        width: 100%;
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+        position: relative;
+        background-repeat: no-repeat;
+
+    }
+
+    /* zones positions grides */
+    #conference {
+        grid-column: 1/2;
+        grid-row: 6/10;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #serveur {
+        grid-column: 1/2;
+        grid-row: 3/5;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #securite {
+        grid-column: 1/2;
+        grid-row: 1/3;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #personnel {
+        grid-column: 2/4;
+        grid-row: 6/10;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #reception {
+        grid-column: 3/4;
+        grid-row: 3/5;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #archive {
+        grid-column: 3/4;
+        grid-row: 1/3;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    /* SIDEBAR*/
+    #sidebar {
+        width: 100%;
+        background-color: #C9A074;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    #sidebar h2 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+
+    #Add_New_Worker {
+        width: 100%;
+        height: 45px;
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(29, 125, 29, 0.478);
+        color: white;
+        margin-top: 10px;
+    }
+
+    /* modal ajouter */
+
+    #modal_ajouter {
+        width: 90%;
+        margin: auto;
+        background-color: #E1A624;
+        padding: 20px;
+        border-radius: 12px;
+        position: fixed;
+        color: black;
+    }
+
+    #modal_ferme {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    #modal_ajouter input,
+    #modal_ajouter select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        margin-bottom: 10px;
+    }
+
+    #modal_ajouter button {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        background-color: #000;
+        color: #E1A624;
+        border: none;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+}
+
+
+/******************** DESKTOP **********************/
+@media screen and (min-width: 1024px) {
+
+    body {
+        background-color: black;
+        color: whitesmoke;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2,1fr);
+        justify-content: center;
+        gap: 20px;
+        margin: 20px;
+    }
+
+    /* sidebar*/
+    #sidebar {
+        grid-column: 1/2;
+        width: 80%;
+        min-height: 20vh;
+        background-color: #C9A074;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #sidebar h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    #Add_New_Worker {
+        background-color: rgba(29, 125, 29, 0.478);
+        width: 200px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        text-align: center;
+        color: #fff;
+        font-weight: 300;
+        font-family: Arial, Helvetica, sans-serif;
+        align-self: center;
+    }
+
+    /*plan*/
+    #plan {
+        grid-column: 2/4;
+        height: 70vh;
+        background-image: url(images/plan.png);
+        background-size: 100% 100%;
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        position: relative;
+        background-repeat: no-repeat;
+    }
+
+    /* zones dans plan*/
+    .zone_liste {
+        background-color: rgba(0,0,0,0.4);
+        border: 1px solid rgba(42, 95, 130, 0.3);
+        border-radius: 5px;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        justify-content: center;
+        color: #fff;
+    }
+
+    /* zones positions grides */
+    #conference {
+        grid-column: 1/5;
+        grid-row: 1/2;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #serveur {
+        grid-column: 6/8;
+        grid-row: 1/2;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #securite {
+        grid-column: 8/10;
+        grid-row: 1/2;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #personnel {
+        grid-column: 1/5;
+        grid-row: 2/4;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #reception {
+        grid-column: 6/8;
+        grid-row: 3/4;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #archive {
+        grid-column: 8/10;
+        grid-row: 3/4;
+        background-color: rgba(16, 112, 186, 0.377);
+        border: 1px solid blue;
+    }
+
+    #modal_ajouter {
+        grid-column: 2/4;
+        grid-row: 2/3;
+        border-radius: 16px;
+        border: 1px solid #E1A624;
+        background-color: #E1A624;
+        width: 60%;
+        padding: 20px;
+        color: #000;
+        position: relative; 
+        right: -20%;
+        top: -100%;
+    }
+
+    #modal_ajouter h2 {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    #modal_ajouter input,
+    #modal_ajouter select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        margin-bottom: 12px;
+    }
+
+    #modal_ajouter button {
+        width: 100%;
+        background-color: #000;
+        color: #E1A624;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    #modal_ajouter button:hover {
+        background-color: #E1A624;
+        color: #000;
+        border: 1px solid #000;
+        transform: scale(1.02);
+
+    }
+
+
+    #modal_ferme {
+        cursor: pointer;
+        width: 100px;
+        height: 100px;
+        font-size: 22px;
+        font-weight: bold;
+        position: relative;
+        top: -100%;
+        right: -96%;
+        color: black;
+    }
+
+    #modal_ferme:hover {
+        color: #fff;
+        transform: scale(1.2);
+    }
+}
