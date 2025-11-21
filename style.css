@@ -5,13 +5,19 @@
     font-family: "Poppins", sans-serif;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
 /*************** MOBILE FIRST ***************/
 @media screen and (max-width: 767px) {
-    .img_confere ,.img_reception,.img_archive, .img_personnel , .img_serveur,.img_securite{
+
+    .img_confere,
+    .img_reception,
+    .img_archive,
+    .img_personnel,
+    .img_serveur,
+    .img_securite {
         width: 50px;
         height: 50px;
         border-radius: 25px;
@@ -48,43 +54,43 @@
     #conference {
         grid-column: 1/2;
         grid-row: 6/10;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+
+
     }
 
     #serveur {
         grid-column: 1/2;
         grid-row: 3/5;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+
+
     }
 
     #securite {
         grid-column: 1/2;
         grid-row: 1/3;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+
+
     }
 
     #personnel {
         grid-column: 2/4;
         grid-row: 6/10;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+
+
     }
 
     #reception {
         grid-column: 3/4;
         grid-row: 3/5;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+
+
     }
 
     #archive {
         grid-column: 3/4;
         grid-row: 1/3;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+
+
     }
 
     /* SIDEBAR*/
@@ -142,18 +148,19 @@
         margin-bottom: 10px;
     }
 
-    
+
     #modal_ajouter button {
         width: 100%;
         padding: 12px;
-        border-radius: 8px; 
+        border-radius: 8px;
         background-color: #628141;
         color: #fff;
         border: none;
         margin-top: 10px;
         font-weight: bold;
     }
-     #modal_ajouter button:hover {
+
+    #modal_ajouter button:hover {
         background-color: #fff;
         color: #628141;
         border: 1px solid #fff;
@@ -166,14 +173,27 @@
 
 /******************** DESKTOP **********************/
 @media screen and (min-width: 1024px) {
-    .img_confere ,.img_reception,.img_archive, .img_personnel , .img_serveur,.img_securite{
+
+    .img_confere,
+    .img_reception,
+    .img_archive,
+    .img_personnel,
+    .img_serveur,
+    .img_securite {
         width: 50px;
         height: 50px;
         border-radius: 25px;
     }
 
-     .unassigned_list {
-        display: flex;         
+    .zone h3 {
+        background-color: #E67E22;
+        width: 90%;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .unassigned_list {
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -188,7 +208,8 @@
         color: #000;
         margin: 0 10px 0 10px;
     }
-    .unassigned_list p strong{
+
+    .unassigned_list p strong {
         color: #405518
     }
 
@@ -197,7 +218,7 @@
         color: whitesmoke;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2,1fr);
+        grid-template-rows: repeat(2, 1fr);
         justify-content: center;
         gap: 20px;
         margin: 20px;
@@ -252,69 +273,88 @@
     }
 
     /* zones dans plan*/
+
+    .zone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding-top: 10px;
+    }
+
     .zone_liste {
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgba(0, 0, 0, 0.4);
         border: 1px solid rgba(42, 95, 130, 0.3);
         border-radius: 5px;
+        border: none;
         width: 80%;
         display: flex;
         align-items: center;
         margin-left: 20px;
         justify-content: center;
         color: #fff;
-        
+
     }
-    .zone_ajoute{
-        width:30px;
-        height:30px;
+
+    .zone_ajoute {
+        width: 30px;
+        height: 30px;
         border-radius: 20px;
         border: none;
         background-color: #628141;
         color: #fff;
     }
-    .zone_liste_ajoutes{
+
+    .zone_liste_ajoutes {
         display: flex;
         justify-content: center;
+        gap: 5px;
+        background-color: #00000063;
+        border-radius: 7px;
+        height: 50px;
+        align-items: center;
+        padding: 0px 8px;
     }
+
     /* zones positions grides */
     #conference {
         grid-column: 1/5;
         grid-row: 1/2;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+
         width: 85%;
     }
 
     #serveur {
         grid-column: 6/8;
         grid-row: 1/2;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+        background-color: #ff00004b;
+
+
     }
 
     #securite {
         grid-column: 8/10;
         grid-row: 1/2;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+        background-color: #ff00004b;
+
     }
 
     #personnel {
         grid-column: 1/5;
         grid-row: 2/4;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
         width: 85%;
     }
-    #modal_profile{
+
+    #modal_profile {
         grid-column: 1/3;
         width: 50%;
-         height: 50%;
-         background-color: #E67E22;
-         position: relative;
-         border-radius: 12px;
+        height: 50%;
+        background-color: #E67E22;
+        position: relative;
+        border-radius: 12px;
     }
-    #profile_ferme{
+
+    #profile_ferme {
         position: absolute;
         right: 0px;
         top: 0px;
@@ -323,14 +363,47 @@
         font-size: 25px;
         color: #000;
     }
-    .modalProfile_contenu{
+
+    .modalProfile_contenu {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
     }
-    #profile_name{
+
+    #profile_name {
+        color: #000;
+    }
+
+    #modal_profileUnassigned {
+        grid-column: 1/3;
+        width: 50%;
+        height: 50%;
+        background-color: #E67E22;
+        position: relative;
+        border-radius: 12px;
+    }
+
+    #profileUnassigned_ferme {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        cursor: pointer;
+        padding: 10px;
+        font-size: 25px;
+        color: #000;
+    }
+
+    .modalProfileUnassigned_contenu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    #profileUnassigned_name {
         color: #000;
     }
 
@@ -338,15 +411,16 @@
     #reception {
         grid-column: 6/8;
         grid-row: 3/4;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+        background-color: #ff00004b;
+
+
     }
 
     #archive {
         grid-column: 8/10;
         grid-row: 3/4;
-        background-color: rgba(16, 112, 186, 0.377);
-        border: 1px solid blue;
+        background-color: #ff00004b;
+
     }
 
     #modal_ajouter {
@@ -358,7 +432,7 @@
         width: 60%;
         padding: 20px;
         color: #fff;
-        position: relative; 
+        position: relative;
         right: -20%;
         top: -100%;
     }
@@ -393,7 +467,7 @@
         left: 130px;
     }
 
-    
+
 
     #modal_ajouter button:hover {
         background-color: #fff;

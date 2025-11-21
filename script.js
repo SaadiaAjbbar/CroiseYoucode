@@ -1,6 +1,13 @@
 let Add_New_Worker = document.getElementById("Add_New_Worker");
 let modal_ajouter = document.getElementById("modal_ajouter");
 let modal_ferme = document.getElementById("modal_ferme");
+let capacitePresonnel=8;
+let capaciteConfiance=8;
+let capaciteSecurite=3;
+let capaciteArchive=3;
+let capaciteReception=3;
+let capaciteServeur=3;
+let pleine=false;
 
 // ***** LocalStorage *****
 let employee_form = document.getElementById("employee_form");
@@ -80,6 +87,7 @@ employee_form.addEventListener("submit", e => {
     });
 
     modal_ajouter.classList.add("hidden");
+    // location.reload()
 });
 
 //***************************affichages des employes dans zones
@@ -87,14 +95,15 @@ zone_ajoute.forEach(btn_ajout => {
     btn_ajout.addEventListener("click", () => {
         let sectionclicke = btn_ajout.parentElement;
         employeeArr.forEach(emp => {
+
             //zone conferance
             if (sectionclicke.id == "conference") {
+                
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
                 //tout array dans div zone list dans conference
                 employeeArr.forEach(emp => {
                     if (emp.location == "unassigned") {
-
                         sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
                             `<img src="${emp.url}" class="img_confere" id="${emp.id}" >`)
                     }
@@ -112,16 +121,20 @@ zone_ajoute.forEach(btn_ajout => {
                             location.reload();
                         }
                     })
+                    
                 });
-            }
+             }
+            
             //zone personnel
             if (sectionclicke.id == "personnel") {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
                 //tout array dans div zone list dans personnel
                 employeeArr.forEach(emp => {
-                    sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
-                        `<img src="${emp.url}" class="img_personnel" id="${emp.id}" >`)
+                    if (emp.location == "unassigned") {
+                        sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                            `<img src="${emp.url}" class="img_personnel" id="${emp.id}" >`)
+                    }
                 });
 
                 //tout array dans div zone list dans personnel
@@ -147,8 +160,10 @@ zone_ajoute.forEach(btn_ajout => {
                     return RolesServeur.role == "Technicien IT" || RolesServeur.role == "Manager"
                 });
                 resultsRolesServeur.forEach(emp => {
-                    sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
-                        `<img src="${emp.url}" class="img_serveur" id="${emp.id}" >`)
+                    if (emp.location == "unassigned") {
+                        sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                            `<img src="${emp.url}" class="img_serveur" id="${emp.id}" >`)
+                    }
                 });
 
                 //tout array dans div zone list dans serveur
@@ -174,8 +189,10 @@ zone_ajoute.forEach(btn_ajout => {
                     return Rolessecurite.role == "Agent de securite" || Rolessecurite.role == "Manager"
                 });
                 resultsRolessecurite.forEach(emp => {
-                    sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
-                        `<img src="${emp.url}" class="img_securite" id="${emp.id}" >`)
+                    if (emp.location == "unassigned") {
+                        sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                            `<img src="${emp.url}" class="img_securite" id="${emp.id}" >`)
+                    }
                 });
 
                 //tout array dans div zone list dans securite
@@ -201,8 +218,10 @@ zone_ajoute.forEach(btn_ajout => {
                     return Rolesreception.role == "Receptionniste" || Rolesreception.role == "Manager"
                 });
                 resultsRolesreception.forEach(emp => {
-                    sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
-                        `<img src="${emp.url}" class="img_reception" id="${emp.id}" >`)
+                    if (emp.location == "unassigned") {
+                        sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                            `<img src="${emp.url}" class="img_reception" id="${emp.id}" >`)
+                    }
                 });
 
                 //tout array dans div zone list dans reception
@@ -228,8 +247,10 @@ zone_ajoute.forEach(btn_ajout => {
                     return Rolesarchive.role != "Nettoyage"
                 });
                 resultsRolesarchive.forEach(emp => {
-                    sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
-                        `<img src="${emp.url}" class="img_archive" id="${emp.id}" >`)
+                    if (emp.location == "unassigned") {
+                        sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                            `<img src="${emp.url}" class="img_archive" id="${emp.id}" >`)
+                    }
                 });
 
                 //tout array dans div zone list dans archive
@@ -296,6 +317,8 @@ employeeArr.forEach(emp => {
 
         let unassigned_list = document.createElement("div");
         unassigned_list.className = "unassigned_list";
+        unassigned_list.id = `${emp.id}uns`;
+
         unassigned_list.innerHTML = `
         <p><strong>Nom:</strong> ${emp.name}</p>
         <p><strong>Role:</strong> ${emp.role}</p>
@@ -309,35 +332,40 @@ employeeArr.forEach(emp => {
     } else if (emp.location == "conference") {
         let zoneConference = document.getElementById("conference");
         zoneConference.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
-
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            capaciteConfiance--;
     }
     else if (emp.location == "personnel") {
         let zonepersonnel = document.getElementById("personnel");
         zonepersonnel.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
 
     }
     else if (emp.location == "serveur") {
         let zoneserveur = document.getElementById("serveur");
         zoneserveur.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
-    }
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            document.querySelector("#serveur").style.backgroundColor="#ff000000";
+        }
     else if (emp.location == "securite") {
         let zonesecurite = document.getElementById("securite");
         zonesecurite.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
-    }
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+
+             document.querySelector("#securite").style.backgroundColor="#ff000000";
+        }
     else if (emp.location == "reception") {
         let zonereception = document.getElementById("reception");
         zonereception.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
-    }
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            document.querySelector("#reception").style.backgroundColor="#ff000000";
+        }
     else if (emp.location == "archive") {
         let zonearchive = document.getElementById("archive");
         zonearchive.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
-    }
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            document.querySelector("#archive").style.backgroundColor="#ff000000";
+        }
 });
 
 //affichage des profiles si clicke sur image dans une zone
@@ -358,20 +386,44 @@ Array.from(document.querySelectorAll(".img_AjoutZone")).forEach(imgEmpZone => {
 
         }
 
-        document.querySelector("#btn_sortirZone").addEventListener("click",()=>{
-            let indexClickedEmp=employeeArr.findIndex((empIndexCloicked)=>{
-                return empIndexCloicked.id==empZoneClicked.id;
+        document.querySelector("#btn_sortirZone").addEventListener("click", () => {
+            let indexClickedEmp = employeeArr.findIndex((empIndexCloicked) => {
+                return empIndexCloicked.id == empZoneClicked.id;
             });
-            employeeArr[indexClickedEmp].location="unassigned";
-            localStorage.setItem("emplyeItem",JSON.stringify(employeeArr))
+            employeeArr[indexClickedEmp].location = "unassigned";
+            localStorage.setItem("emplyeItem", JSON.stringify(employeeArr))
             location.reload();
         })
 
     })
-    
+
 });
-
-
 document.querySelector("#profile_ferme").addEventListener("click", () => {
     document.querySelector("#modal_profile").classList.toggle("hidden")
+})
+
+
+//
+Array.from(document.querySelectorAll(".unassigned_list")).forEach((unassigned) => {
+    unassigned.addEventListener("click", () => {
+        employeeArr.forEach((empll) => {
+            if (unassigned.id == empll.id + "uns") {
+                let modal_profileUnassigned = document.querySelector("#modal_profileUnassigned");
+                modal_profileUnassigned.classList.toggle("hidden");
+                document.querySelector("#profileUnassigned_photo").src = `${empll.url}`;
+                document.querySelector("#profileUnassigned_name").textContent = `${empll.name}`;
+                document.querySelector("#profileUnassigned_role").textContent = `le role:${empll.role}`;
+                document.querySelector("#profileUnassigned_email").textContent = `l'email:${empll.email}`;
+                document.querySelector("#profileUnassigned_phone").textContent = `le telephone:${empll.phone}`;
+                document.querySelector("#profileUnassigned_zone").textContent = `zone actuelle:${empll.location}`;
+
+            }
+        })
+
+    })
+
+})
+
+document.querySelector("#profileUnassigned_ferme").addEventListener("click", () => {
+    document.querySelector("#modal_profileUnassigned").classList.toggle("hidden")
 })
