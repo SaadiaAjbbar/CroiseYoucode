@@ -19,40 +19,46 @@
     </aside>
     <!-- plan -->
     <main id="plan">
-        <section class="zone" id="conference" data-role="All">
+        <section class="zone" id="conference">
             <h3>Salle de conférence</h3>
-            <button class="zone_ajoutBtn">+</button>
+            <button class="zone_ajoute">+</button>
             <div class="zone_liste"><!-- liste des employes dans zone avec js --></div>
+            <div class="zone_liste_ajoutes"></div>
         </section>
 
-        <section class="zone" id="serveur" data-role="Technicien IT, Manager">
+        <section class="zone" id="serveur">
             <h3>Salle des serveurs</h3>
-            <button class="zone_ajoutBtn">+</button>
+            <button class="zone_ajoute">+</button>
             <div class="zone_liste"></div>
+            <div class="zone_liste_ajoutes"></div>
         </section>
 
-        <section class="zone" id="securite" data-role="Agent de securite">
+        <section class="zone" id="securite">
             <h3>Salle de securite</h3>
-            <button class="zone_ajoutBtn">+</button>
+            <button class="zone_ajoute">+</button>
             <div class="zone_liste"></div>
+            <div class="zone_liste_ajoutes"></div>
         </section>
 
-        <section class="zone" id="personnel" data-role="All">
+        <section class="zone" id="personnel">
             <h3>Salle du personnel</h3>
-            <button class="zone_ajoutBtn">+</button>
-            <div class="zone_liste"></div>
+            <button class="zone_ajoute">+</button>
+            <div class="zone_liste" ></div>
+            <div class="zone_liste_ajoutes"></div>
         </section>
 
-        <section class="zone" id="reception" data-role="Receptionniste">
+        <section class="zone" id="reception">
             <h3>Reception</h3>
-            <button class="zone_ajoutBtn">+</button>
+            <button class="zone_ajoute">+</button>
             <div class="zone_liste"></div>
+            <div class="zone_liste_ajoutes"></div>
         </section>
         
-        <section class="zone" id="archive" data-role="Receptionniste,Technicien IT,Agent de securite,Manager,Autres">
+        <section class="zone" id="archive">
             <h3>Salle darchives</h3>
-            <button class="zone_ajoutBtn">+</button>
+            <button class="zone_ajoute">+</button>
             <div class="zone_liste"></div>
+            <div class="zone_liste_ajoutes"></div>
         </section>
     </main>
     <!--*********modal ajouter nouveau employee******-->
@@ -77,6 +83,9 @@
 
                 <label>Photo (url):</label>
                 <input type="url" id="urlphoto">
+                <div id="previs_img">
+
+                </div>
 
                 <label>Email:</label>
                 <input type="email" id="email" required>
@@ -89,6 +98,9 @@
                         <input type="text" class="experience_titre" placeholder="Titre de poste">
                         <input type="date" class="experience_debut" placeholder="Date de debut">
                         <input type="date" class="experience_fin" placeholder="Date de fin">
+                    </div>
+                    <div id="experienceNouveau" style="width: 100%;">
+
                     </div>
                     <button type="button" id="ajout_experience">Ajouter experience</button>
                 </div>
