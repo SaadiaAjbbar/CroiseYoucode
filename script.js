@@ -9,6 +9,79 @@ let employeeArr = JSON.parse(localStorage.getItem("emplyeItem")) || [];
 let unassigned_lists = document.getElementById("unassigned_lists");
 
 let zone_ajoute = document.querySelectorAll(".zone_ajoute");
+
+
+// ***** Ajouter expérience dynamiquement *****
+let ajout_experience = document.getElementById("ajout_experience");
+let experiencesContainer = document.getElementById("experiences");
+let experienceNouveau = document.getElementById("experienceNouveau");
+ajout_experience.addEventListener("click", () => {
+    let experiences_divPlus = document.createElement("div");
+    experiences_divPlus.className = "experiences_div";
+    experiences_divPlus.innerHTML = `
+        <input type="text" class="experience_titre" placeholder="Titre de poste">
+        <input type="date" class="experience_debut">
+        <input type="date" class="experience_fin">
+    `;
+    experienceNouveau.appendChild(experiences_divPlus);
+});
+
+employee_form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let role = document.getElementById("role").value;
+    let url = document.getElementById("urlphoto").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let id = 1;
+    if (employeeArr.length > 0) {
+        id = employeeArr[employeeArr.length - 1].id + 1;
+    }
+
+    if (url == "") {
+        url = "images/imgDefault.png";
+    }
+
+    const experiences = [];
+    document.querySelectorAll(".experiences_div").forEach(div => {
+        let titre = div.querySelector(".experience_titre").value;
+        let dateDebut = div.querySelector(".experience_debut").value;
+        let dateFin = div.querySelector(".experience_fin").value;
+
+
+        if (titre || dateDebut || dateFin) {
+            experiences.push({ titre, dateDebut, dateFin });
+        }
+    });
+
+    const employee = {
+        id: id, name: name, role: role, url: url, email: email, phone: phone, experiences: experiences, location: "unassigned"
+    };
+    employeeArr.push(employee);
+    localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
+
+    let unassigned_list = document.createElement("div");
+    unassigned_list.className = "unassigned_list";
+    unassigned_list.innerHTML = `
+        <p><strong>Nom:</strong> ${name}</p>
+        <p><strong>Role:</strong> ${role}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Experiences:</strong> ${experiences.map(e => e.titre).join(", ")}</p>
+    `;
+    unassigned_lists.appendChild(unassigned_list);
+    url = "";
+    employee_form.reset();
+
+    // garder seulement 1 bloc d'experience
+    document.querySelectorAll(".experiences_div").forEach((div, i) => {
+        if (i > 0) div.remove();
+    });
+
+    modal_ajouter.classList.add("hidden");
+});
+
 //***************************affichages des employes dans zones
 zone_ajoute.forEach(btn_ajout => {
     btn_ajout.addEventListener("click", () => {
@@ -20,11 +93,14 @@ zone_ajoute.forEach(btn_ajout => {
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
                 //tout array dans div zone list dans conference
                 employeeArr.forEach(emp => {
-                    sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
-                        `<img src="${emp.url}" class="img_confere" id="${emp.id}" >`)
+                    if (emp.location == "unassigned") {
+
+                        sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                            `<img src="${emp.url}" class="img_confere" id="${emp.id}" >`)
+                    }
                 });
 
-                //tout array dans div zone list dans conference
+                //modifier location de employer et push dans localstorage
                 Array.from(document.querySelectorAll(".img_confere")).forEach(element => {
                     element.addEventListener("click", (imgConf) => {
                         let imagechoosed = imgConf.currentTarget.id;
@@ -267,98 +343,35 @@ employeeArr.forEach(emp => {
 //affichage des profiles si clicke sur image dans une zone
 Array.from(document.querySelectorAll(".img_AjoutZone")).forEach(imgEmpZone => {
     imgEmpZone.addEventListener("click", (imgZoneclicked) => {
+        document.querySelector("#btn_sortirZone").classList.toggle("hidden")
         let modal_profile = document.querySelector("#modal_profile");
         modal_profile.classList.toggle("hidden")
         let imageZonechoosed = imgZoneclicked.currentTarget.id;
         let empZoneClicked = employeeArr.find(emploClicked => emploClicked.id + "z" == imageZonechoosed);
-        console.log(empZoneClicked.id + "z");
-        console.log(imageZonechoosed);
         if (empZoneClicked) {
-            document.querySelector("#profile_photo").src=`${empZoneClicked.url}`;
-            document.querySelector("#profile_name").textContent=`${empZoneClicked.name}`;
-            document.querySelector("#profile_role").textContent=`${empZoneClicked.role}`;
-            document.querySelector("#profile_email").textContent=`${empZoneClicked.email}`;
-            document.querySelector("#profile_phone").textContent=`${empZoneClicked.phone}`;
-            document.querySelector("#profile_zone").textContent=`${empZoneClicked.location}`;
-            
+            document.querySelector("#profile_photo").src = `${empZoneClicked.url}`;
+            document.querySelector("#profile_name").textContent = `${empZoneClicked.name}`;
+            document.querySelector("#profile_role").textContent = `le role:${empZoneClicked.role}`;
+            document.querySelector("#profile_email").textContent = `l'email:${empZoneClicked.email}`;
+            document.querySelector("#profile_phone").textContent = `le telephone:${empZoneClicked.phone}`;
+            document.querySelector("#profile_zone").textContent = `zone actuelle:${empZoneClicked.location}`;
+
         }
 
+        document.querySelector("#btn_sortirZone").addEventListener("click",()=>{
+            let indexClickedEmp=employeeArr.findIndex((empIndexCloicked)=>{
+                return empIndexCloicked.id==empZoneClicked.id;
+            });
+            employeeArr[indexClickedEmp].location="unassigned";
+            localStorage.setItem("emplyeItem",JSON.stringify(employeeArr))
+            location.reload();
+        })
+
     })
+    
 });
 
 
 document.querySelector("#profile_ferme").addEventListener("click", () => {
     document.querySelector("#modal_profile").classList.toggle("hidden")
 })
-
-
-// ***** Ajouter expérience dynamiquement *****
-let ajout_experience = document.getElementById("ajout_experience");
-let experiencesContainer = document.getElementById("experiences");
-let experienceNouveau = document.getElementById("experienceNouveau");
-ajout_experience.addEventListener("click", () => {
-    let experiences_divPlus = document.createElement("div");
-    experiences_divPlus.className = "experiences_div";
-    experiences_divPlus.innerHTML = `
-        <input type="text" class="experience_titre" placeholder="Titre de poste">
-        <input type="date" class="experience_debut">
-        <input type="date" class="experience_fin">
-    `;
-    experienceNouveau.appendChild(experiences_divPlus);
-});
-
-employee_form.addEventListener("submit", e => {
-    e.preventDefault();
-
-    let name = document.getElementById("name").value;
-    let role = document.getElementById("role").value;
-    let url = document.getElementById("urlphoto").value;
-    let email = document.getElementById("email").value;
-    let phone = document.getElementById("phone").value;
-    let id = 1;
-    if (employeeArr.length > 0) {
-        id = employeeArr[employeeArr.length - 1].id + 1;
-    }
-
-    if (url == "") {
-        url = "images/imgDefault.png";
-    }
-
-    const experiences = [];
-    document.querySelectorAll(".experiences_div").forEach(div => {
-        let titre = div.querySelector(".experience_titre").value;
-        let dateDebut = div.querySelector(".experience_debut").value;
-        let dateFin = div.querySelector(".experience_fin").value;
-
-
-        if (titre || dateDebut || dateFin) {
-            experiences.push({ titre, dateDebut, dateFin });
-        }
-    });
-
-    const employee = {
-        id: id, name: name, role: role, url: url, email: email, phone: phone, experiences: experiences, location: "unassigned"
-    };
-    employeeArr.push(employee);
-    localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
-
-    let unassigned_list = document.createElement("div");
-    unassigned_list.className = "unassigned_list";
-    unassigned_list.innerHTML = `
-        <p><strong>Nom:</strong> ${name}</p>
-        <p><strong>Role:</strong> ${role}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Experiences:</strong> ${experiences.map(e => e.titre).join(", ")}</p>
-    `;
-    unassigned_lists.appendChild(unassigned_list);
-    url = "";
-    employee_form.reset();
-
-    // garder seulement 1 bloc d'experience
-    document.querySelectorAll(".experiences_div").forEach((div, i) => {
-        if (i > 0) div.remove();
-    });
-
-    modal_ajouter.classList.add("hidden");
-});
