@@ -67,8 +67,8 @@ zone_ajoute.forEach(btn_ajout => {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
                 //tout array dans div zone list dans serveur
-                let resultsRolesServeur=employeeArr.filter((RolesServeur)=>{
-                    return RolesServeur.role=="Technicien IT" || RolesServeur.role=="Manager"
+                let resultsRolesServeur = employeeArr.filter((RolesServeur) => {
+                    return RolesServeur.role == "Technicien IT" || RolesServeur.role == "Manager"
                 });
                 resultsRolesServeur.forEach(emp => {
                     sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
@@ -94,8 +94,8 @@ zone_ajoute.forEach(btn_ajout => {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
                 //tout array dans div zone list dans securite
-                let resultsRolessecurite=employeeArr.filter((Rolessecurite)=>{
-                    return Rolessecurite.role=="Agent de securite" || Rolessecurite.role=="Manager"
+                let resultsRolessecurite = employeeArr.filter((Rolessecurite) => {
+                    return Rolessecurite.role == "Agent de securite" || Rolessecurite.role == "Manager"
                 });
                 resultsRolessecurite.forEach(emp => {
                     sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
@@ -121,8 +121,8 @@ zone_ajoute.forEach(btn_ajout => {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
                 //tout array dans div zone list dans reception
-                let resultsRolesreception=employeeArr.filter((Rolesreception)=>{
-                    return Rolesreception.role=="Receptionniste" || Rolesreception.role=="Manager"
+                let resultsRolesreception = employeeArr.filter((Rolesreception) => {
+                    return Rolesreception.role == "Receptionniste" || Rolesreception.role == "Manager"
                 });
                 resultsRolesreception.forEach(emp => {
                     sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
@@ -148,8 +148,8 @@ zone_ajoute.forEach(btn_ajout => {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
                 //tout array dans div zone list dans archive
-                let resultsRolesarchive=employeeArr.filter((Rolesarchive)=>{
-                    return Rolesarchive.role!="Nettoyage"
+                let resultsRolesarchive = employeeArr.filter((Rolesarchive) => {
+                    return Rolesarchive.role != "Nettoyage"
                 });
                 resultsRolesarchive.forEach(emp => {
                     sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
@@ -176,7 +176,6 @@ zone_ajoute.forEach(btn_ajout => {
 
     })
 });
-
 // ***** Modal *****
 Add_New_Worker.addEventListener("click", () => {
     modal_ajouter.classList.remove("hidden");
@@ -233,35 +232,35 @@ employeeArr.forEach(emp => {
         //si ona fait ajoute a une zone (changement de location)
     } else if (emp.location == "conference") {
         let zoneConference = document.getElementById("conference");
-        zoneConference.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("afterend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;"></div>`)
+        zoneConference.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
+            `<div><img src="${emp.url}"id="${emp.id}ed" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
 
     }
     else if (emp.location == "personnel") {
         let zonepersonnel = document.getElementById("personnel");
-        zonepersonnel.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("afterend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;"></div>`)
+        zonepersonnel.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
+            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
 
     }
     else if (emp.location == "serveur") {
         let zoneserveur = document.getElementById("serveur");
-        zoneserveur.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("afterend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;"></div>`)
+        zoneserveur.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
+            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
     }
     else if (emp.location == "securite") {
         let zonesecurite = document.getElementById("securite");
-        zonesecurite.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("afterend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;"></div>`)
+        zonesecurite.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
+            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
     }
     else if (emp.location == "reception") {
         let zonereception = document.getElementById("reception");
-        zonereception.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("afterend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;"></div>`)
+        zonereception.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
+            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
     }
     else if (emp.location == "archive") {
         let zonearchive = document.getElementById("archive");
-        zonearchive.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("afterend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;"></div>`)
+        zonearchive.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
+            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
     }
 });
 

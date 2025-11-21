@@ -11,9 +11,14 @@
 
 /*************** MOBILE FIRST ***************/
 @media screen and (max-width: 767px) {
+    .img_confere ,.img_reception,.img_archive, .img_personnel , .img_serveur,.img_securite{
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+    }
 
     body {
-        background-color: black;
+        background-color: #EBD5AB;
         color: whitesmoke;
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -85,7 +90,7 @@
     /* SIDEBAR*/
     #sidebar {
         width: 100%;
-        background-color: #C9A074;
+        background-color: #628141;
         border-radius: 10px;
         padding: 15px;
     }
@@ -102,7 +107,7 @@
         height: 45px;
         border-radius: 10px;
         border: none;
-        background-color: rgba(29, 125, 29, 0.478);
+        background-color: #E67E22;
         color: white;
         margin-top: 10px;
     }
@@ -112,11 +117,12 @@
     #modal_ajouter {
         width: 90%;
         margin: auto;
-        background-color: #E1A624;
+        border: 1px solid #E67E22;
+        background-color: #E67E22;
         padding: 20px;
         border-radius: 12px;
         position: fixed;
-        color: black;
+        color: #fff;
     }
 
     #modal_ferme {
@@ -136,15 +142,23 @@
         margin-bottom: 10px;
     }
 
+    
     #modal_ajouter button {
         width: 100%;
         padding: 12px;
-        border-radius: 8px;
-        background-color: #000;
-        color: #E1A624;
+        border-radius: 8px; 
+        background-color: #628141;
+        color: #fff;
         border: none;
         margin-top: 10px;
         font-weight: bold;
+    }
+     #modal_ajouter button:hover {
+        background-color: #fff;
+        color: #628141;
+        border: 1px solid #fff;
+        transform: scale(1.02);
+
     }
 
 }
@@ -155,6 +169,7 @@
     .img_confere ,.img_reception,.img_archive, .img_personnel , .img_serveur,.img_securite{
         width: 50px;
         height: 50px;
+        border-radius: 25px;
     }
 
      .unassigned_list {
@@ -178,7 +193,7 @@
     }
 
     body {
-        background-color: #a27d55;
+        background-color: #EBD5AB;
         color: whitesmoke;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -193,7 +208,7 @@
         grid-column: 1/2;
         width: 100%;
         min-height: 20vh;
-        background-color: #C9A074;
+        background-color: #628141;
         border-radius: 10px;
         padding: 20px;
         display: flex;
@@ -209,7 +224,7 @@
 
     #Add_New_Worker {
         cursor: pointer;
-        background-color: rgba(29, 125, 29, 0.478);
+        background-color: #E67E22;
         width: 200px;
         height: 40px;
         border-radius: 10px;
@@ -249,7 +264,18 @@
         color: #fff;
         
     }
-
+    .zone_ajoute{
+        width:30px;
+        height:30px;
+        border-radius: 20px;
+        border: none;
+        background-color: #628141;
+        color: #fff;
+    }
+    .zone_liste_ajoutes{
+        display: flex;
+        justify-content: center;
+    }
     /* zones positions grides */
     #conference {
         grid-column: 1/5;
@@ -299,11 +325,11 @@
         grid-column: 2/4;
         grid-row: 2/3;
         border-radius: 16px;
-        border: 1px solid #E1A624;
-        background-color: #E1A624;
+        border: 1px solid #E67E22;
+        background-color: #E67E22;
         width: 60%;
         padding: 20px;
-        color: #000;
+        color: #fff;
         position: relative; 
         right: -20%;
         top: -100%;
@@ -313,6 +339,7 @@
         font-size: 22px;
         font-weight: bold;
         margin-bottom: 12px;
+        color: #000;
     }
 
     #modal_ajouter input,
@@ -325,21 +352,25 @@
     }
 
     #modal_ajouter button {
-        width: 100%;
-        background-color: #000;
-        color: #E1A624;
+        width: 50%;
+        background-color: #628141;
+        color: #fff;
         padding: 10px;
         border-radius: 8px;
         border: none;
         font-weight: bold;
         cursor: pointer;
         margin-bottom: 10px;
+        position: relative;
+        left: 130px;
     }
 
+    
+
     #modal_ajouter button:hover {
-        background-color: #E1A624;
-        color: #000;
-        border: 1px solid #000;
+        background-color: #fff;
+        color: #628141;
+        border: 1px solid #fff;
         transform: scale(1.02);
 
     }
