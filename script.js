@@ -233,36 +233,64 @@ employeeArr.forEach(emp => {
     } else if (emp.location == "conference") {
         let zoneConference = document.getElementById("conference");
         zoneConference.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}"id="${emp.id}ed" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
 
     }
     else if (emp.location == "personnel") {
         let zonepersonnel = document.getElementById("personnel");
         zonepersonnel.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
 
     }
     else if (emp.location == "serveur") {
         let zoneserveur = document.getElementById("serveur");
         zoneserveur.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
     }
     else if (emp.location == "securite") {
         let zonesecurite = document.getElementById("securite");
         zonesecurite.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
     }
     else if (emp.location == "reception") {
         let zonereception = document.getElementById("reception");
         zonereception.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
     }
     else if (emp.location == "archive") {
         let zonearchive = document.getElementById("archive");
         zonearchive.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 50px; height: 50px;  border-radius: 25px;"></div>`)
     }
 });
+
+//affichage des profiles si clicke sur image dans une zone
+Array.from(document.querySelectorAll(".img_AjoutZone")).forEach(imgEmpZone => {
+    imgEmpZone.addEventListener("click", (imgZoneclicked) => {
+        let modal_profile = document.querySelector("#modal_profile");
+        modal_profile.classList.toggle("hidden")
+        let imageZonechoosed = imgZoneclicked.currentTarget.id;
+        let empZoneClicked = employeeArr.find(emploClicked => emploClicked.id + "z" == imageZonechoosed);
+        console.log(empZoneClicked.id + "z");
+        console.log(imageZonechoosed);
+        if (empZoneClicked) {
+            document.querySelector("#profile_photo").src=`${empZoneClicked.url}`;
+            document.querySelector("#profile_name").textContent=`${empZoneClicked.name}`;
+            document.querySelector("#profile_role").textContent=`${empZoneClicked.role}`;
+            document.querySelector("#profile_email").textContent=`${empZoneClicked.email}`;
+            document.querySelector("#profile_phone").textContent=`${empZoneClicked.phone}`;
+            document.querySelector("#profile_zone").textContent=`${empZoneClicked.location}`;
+            
+        }
+
+    })
+});
+
+
+document.querySelector("#profile_ferme").addEventListener("click", () => {
+    document.querySelector("#modal_profile").classList.toggle("hidden")
+})
+
 
 // ***** Ajouter expérience dynamiquement *****
 let ajout_experience = document.getElementById("ajout_experience");

@@ -306,7 +306,18 @@
         border: 1px solid blue;
         width: 85%;
     }
-
+    #modal_profile{
+        grid-column: 1/3;
+        width: 100%;
+         height: 100%;
+         background-color: #E67E22;
+         position: relative;
+    }
+    #profile_ferme{
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
     #reception {
         grid-column: 6/8;
         grid-row: 3/4;
