@@ -1,13 +1,13 @@
 let Add_New_Worker = document.getElementById("Add_New_Worker");
 let modal_ajouter = document.getElementById("modal_ajouter");
 let modal_ferme = document.getElementById("modal_ferme");
-let capacitePresonnel=8;
-let capaciteConfiance=8;
-let capaciteSecurite=3;
-let capaciteArchive=3;
-let capaciteReception=3;
-let capaciteServeur=3;
-let pleine=false;
+let capacitePresonnel = 8;
+let capaciteConfiance = 8;
+let capaciteSecurite = 3;
+let capaciteArchive = 3;
+let capaciteReception = 3;
+let capaciteServeur = 3;
+let pleine = false;
 
 // ***** LocalStorage *****
 let employee_form = document.getElementById("employee_form");
@@ -98,7 +98,7 @@ zone_ajoute.forEach(btn_ajout => {
 
             //zone conferance
             if (sectionclicke.id == "conference") {
-                
+
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
                 //tout array dans div zone list dans conference
@@ -114,17 +114,19 @@ zone_ajoute.forEach(btn_ajout => {
                     element.addEventListener("click", (imgConf) => {
                         let imagechoosed = imgConf.currentTarget.id;
                         let empClicked = employeeArr.find(employ => employ.id == imagechoosed);
-                        if (empClicked) {
+                        if (empClicked && capaciteConfiance > 0) {
                             console.log(empClicked.location)
                             empClicked.location = "conference";
                             localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
                             location.reload();
+                        } else {
+                            alert("cette zone est pleine!!")
                         }
                     })
-                    
+
                 });
-             }
-            
+            }
+
             //zone personnel
             if (sectionclicke.id == "personnel") {
                 //vider div affichage
@@ -142,11 +144,13 @@ zone_ajoute.forEach(btn_ajout => {
                     element.addEventListener("click", (imgPersonnel) => {
                         let imagechoosed = imgPersonnel.currentTarget.id;
                         let empClicked = employeeArr.find(employ => employ.id == imagechoosed);
-                        if (empClicked) {
+                        if (empClicked && capacitePresonnel > 0) {
                             console.log(empClicked.location)
                             empClicked.location = "personnel";
                             localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
                             location.reload();
+                        } else {
+                            alert("cette zone est pleine!!")
                         }
                     })
                 });
@@ -171,11 +175,13 @@ zone_ajoute.forEach(btn_ajout => {
                     element.addEventListener("click", (imgserveur) => {
                         let imagechoosed = imgserveur.currentTarget.id;
                         let empClicked = employeeArr.find(employ => employ.id == imagechoosed);
-                        if (empClicked) {
+                        if (empClicked && capaciteServeur > 0) {
                             console.log(empClicked.location)
                             empClicked.location = "serveur";
                             localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
                             location.reload();
+                        } else {
+                            alert("cette zone est pleine!!")
                         }
                     })
                 });
@@ -200,11 +206,13 @@ zone_ajoute.forEach(btn_ajout => {
                     element.addEventListener("click", (imgsecurite) => {
                         let imagechoosed = imgsecurite.currentTarget.id;
                         let empClicked = employeeArr.find(employ => employ.id == imagechoosed);
-                        if (empClicked) {
+                        if (empClicked && capaciteSecurite > 0) {
                             console.log(empClicked.location)
                             empClicked.location = "securite";
                             localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
                             location.reload();
+                        } else {
+                            alert("cette zone est pleine!!")
                         }
                     })
                 });
@@ -229,11 +237,13 @@ zone_ajoute.forEach(btn_ajout => {
                     element.addEventListener("click", (imgreception) => {
                         let imagechoosed = imgreception.currentTarget.id;
                         let empClicked = employeeArr.find(employ => employ.id == imagechoosed);
-                        if (empClicked) {
+                        if (empClicked && capaciteReception > 0) {
                             console.log(empClicked.location)
                             empClicked.location = "reception";
                             localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
                             location.reload();
+                        } else {
+                            alert("cette zone est pleine!!")
                         }
                     })
                 });
@@ -258,11 +268,13 @@ zone_ajoute.forEach(btn_ajout => {
                     element.addEventListener("click", (imgarchive) => {
                         let imagechoosed = imgarchive.currentTarget.id;
                         let empClicked = employeeArr.find(employ => employ.id == imagechoosed);
-                        if (empClicked) {
+                        if (empClicked && capaciteArchive > 0) {
                             console.log(empClicked.location)
                             empClicked.location = "archive";
                             localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
                             location.reload();
+                        } else {
+                            alert("cette zone est pleine!!")
                         }
                     })
                 });
@@ -333,39 +345,43 @@ employeeArr.forEach(emp => {
         let zoneConference = document.getElementById("conference");
         zoneConference.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
             `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
-            capaciteConfiance--;
+        capaciteConfiance--;
     }
     else if (emp.location == "personnel") {
         let zonepersonnel = document.getElementById("personnel");
         zonepersonnel.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
             `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
-
+        capacitePresonnel--;
     }
     else if (emp.location == "serveur") {
         let zoneserveur = document.getElementById("serveur");
         zoneserveur.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
             `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
-            document.querySelector("#serveur").style.backgroundColor="#ff000000";
-        }
+        document.querySelector("#serveur").style.backgroundColor = "#ff000000";
+        capaciteServeur--;
+    }
     else if (emp.location == "securite") {
         let zonesecurite = document.getElementById("securite");
         zonesecurite.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
             `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
 
-             document.querySelector("#securite").style.backgroundColor="#ff000000";
-        }
+        document.querySelector("#securite").style.backgroundColor = "#ff000000";
+        capaciteSecurite--;
+    }
     else if (emp.location == "reception") {
         let zonereception = document.getElementById("reception");
         zonereception.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
             `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
-            document.querySelector("#reception").style.backgroundColor="#ff000000";
-        }
+        document.querySelector("#reception").style.backgroundColor = "#ff000000";
+        capaciteReception--;
+    }
     else if (emp.location == "archive") {
         let zonearchive = document.getElementById("archive");
         zonearchive.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
             `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
-            document.querySelector("#archive").style.backgroundColor="#ff000000";
-        }
+        document.querySelector("#archive").style.backgroundColor = "#ff000000";
+        capaciteArchive--;
+    }
 });
 
 //affichage des profiles si clicke sur image dans une zone
