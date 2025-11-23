@@ -8,6 +8,7 @@ let capaciteArchive = 3;
 let capaciteReception = 3;
 let capaciteServeur = 3;
 let pleine = false;
+let clickedAJOUTExp = false;
 
 // ***** LocalStorage *****
 let employee_form = document.getElementById("employee_form");
@@ -22,15 +23,46 @@ let zone_ajoute = document.querySelectorAll(".zone_ajoute");
 let ajout_experience = document.getElementById("ajout_experience");
 let experiencesContainer = document.getElementById("experiences");
 let experienceNouveau = document.getElementById("experienceNouveau");
+const experiences = [];
 ajout_experience.addEventListener("click", () => {
-    let experiences_divPlus = document.createElement("div");
-    experiences_divPlus.className = "experiences_div";
-    experiences_divPlus.innerHTML = `
-        <input type="text" class="experience_titre" placeholder="Titre de poste">
-        <input type="date" class="experience_debut">
-        <input type="date" class="experience_fin">
-    `;
-    experienceNouveau.appendChild(experiences_divPlus);
+    if (clickedAJOUTExp == false) {
+        if (document.querySelector(".experience_titre").value == "") {
+            document.querySelector(".experience_titre").style.border = "2px solid red"
+            document.querySelector(".experience_titre").placeholder = "vous devez creer l'experience"
+        } else {
+            clickedAJOUTExp = true;
+            document.querySelector(".experience_debut").classList.remove("hidden")
+            document.querySelector(".experience_fin").classList.remove("hidden")
+
+        }
+    } else {
+        if (document.querySelector(".experience_fin").value <= document.querySelector(".experience_debut").value || (document.querySelector(".experience_fin").value == "" && document.querySelector(".experience_debut").value == "")) {
+            document.querySelector(".MsjDateExp").classList.remove("hidden")
+        } else {
+            let titre = document.querySelector(".experience_titre").value;
+            let dateDebut = document.querySelector(".experience_debut").value;
+            let dateFin = document.querySelector(".experience_fin").value;
+            experiences.push({ titre, dateDebut, dateFin });
+            document.querySelector(".MsjDateExp").classList.add("hidden")
+            document.querySelector(".experience_titre").value = ""
+             document.querySelector(".experience_titre").placeholder = "Titre de l'autre poste"
+             document.querySelector(".experience_debut").value="";
+             document.querySelector(".experience_fin").value="";
+            document.querySelector(".experience_debut").classList.add("hidden")
+            document.querySelector(".experience_fin").classList.add("hidden")
+            clickedAJOUTExp = false
+
+        }
+    }
+
+    /*
+    
+   
+    document.querySelectorAll(".experiences_div").forEach(div => {
+       
+    });
+
+    */
 });
 
 employee_form.addEventListener("submit", e => {
@@ -50,34 +82,11 @@ employee_form.addEventListener("submit", e => {
         url = "images/imgDefault.png";
     }
 
-    const experiences = [];
-    document.querySelectorAll(".experiences_div").forEach(div => {
-        let titre = div.querySelector(".experience_titre").value;
-        let dateDebut = div.querySelector(".experience_debut").value;
-        let dateFin = div.querySelector(".experience_fin").value;
-
-
-        if (titre || dateDebut || dateFin) {
-            experiences.push({ titre, dateDebut, dateFin });
-        }
-    });
-
     const employee = {
         id: id, name: name, role: role, url: url, email: email, phone: phone, experiences: experiences, location: "unassigned"
     };
     employeeArr.push(employee);
     localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
-
-    let unassigned_list = document.createElement("div");
-    unassigned_list.className = "unassigned_list";
-    unassigned_list.innerHTML = `
-        <p><strong>Nom:</strong> ${name}</p>
-        <p><strong>Role:</strong> ${role}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Experiences:</strong> ${experiences.map(e => e.titre).join(", ")}</p>
-    `;
-    unassigned_lists.appendChild(unassigned_list);
     url = "";
     employee_form.reset();
 
@@ -87,8 +96,40 @@ employee_form.addEventListener("submit", e => {
     });
 
     modal_ajouter.classList.add("hidden");
-    // location.reload()
+    location.reload()
 });
+
+// ***** Modal *****
+Add_New_Worker.addEventListener("click", () => {
+    modal_ajouter.classList.remove("hidden");
+
+    experienceNouveau.innerHTML = '';
+
+});
+modal_ferme.addEventListener("click", () => {
+    modal_ajouter.classList.add("hidden");
+    url = "";
+    previs_img.innerHTML = "";
+    employee_form.reset();
+    experienceNouveau.innerHTML = '';
+});
+
+let urlphoto = document.getElementById("urlphoto");
+let previs_img = document.getElementById("previs_img");
+urlphoto.addEventListener("input", () => {
+
+    let url = urlphoto.value;
+
+    if (url === "") {
+        previs_img.innerHTML = "";
+        return;
+    }
+
+    previs_img.innerHTML = `
+      <img src="${url}" alt="Photo" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
+    `;
+});
+
 
 //***************************affichages des employes dans zones
 zone_ajoute.forEach(btn_ajout => {
@@ -285,46 +326,9 @@ zone_ajoute.forEach(btn_ajout => {
 
     })
 });
-// ***** Modal *****
-Add_New_Worker.addEventListener("click", () => {
-    modal_ajouter.classList.remove("hidden");
-
-    experienceNouveau.innerHTML = '';
-
-});
-modal_ferme.addEventListener("click", () => {
-    modal_ajouter.classList.add("hidden");
-    url = "";
-    previs_img.innerHTML = "";
-    employee_form.reset();
-    experienceNouveau.innerHTML = '';
-});
-
-let urlphoto = document.getElementById("urlphoto");
-let previs_img = document.getElementById("previs_img");
-urlphoto.addEventListener("input", () => {
-
-    let url = urlphoto.value;
-
-    if (url === "") {
-        previs_img.innerHTML = "";
-        return;
-    }
-
-    previs_img.innerHTML = `
-      <img src="${url}" alt="Photo" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
-    `;
-});
 
 // ***** Afficher employes*****
 employeeArr.forEach(emp => {
-    //si experiences vide
-    let expList = "";
-    if (emp.experiences && emp.experiences.length > 0) {
-        expList = emp.experiences.map(e => e.titre).join(" & ");
-    } else {
-        expList = "Aucune expérience";
-    }
     if (emp.location == "unassigned") {
 
         let unassigned_list = document.createElement("div");
@@ -332,14 +336,14 @@ employeeArr.forEach(emp => {
         unassigned_list.id = `${emp.id}uns`;
 
         unassigned_list.innerHTML = `
+        <img src='${emp.url}'/>
         <p><strong>Nom:</strong> ${emp.name}</p>
         <p><strong>Role:</strong> ${emp.role}</p>
-        <p><strong>Email:</strong> ${emp.email}</p>
-        <p><strong>Phone:</strong> ${emp.phone}</p>
-        <p><strong>Experiences:</strong> ${expList}</p>
+
       `;
 
         unassigned_lists.appendChild(unassigned_list);
+
         //si ona fait ajoute a une zone (changement de location)
     } else if (emp.location == "conference") {
         let zoneConference = document.getElementById("conference");
@@ -399,6 +403,11 @@ Array.from(document.querySelectorAll(".img_AjoutZone")).forEach(imgEmpZone => {
             document.querySelector("#profile_email").textContent = `l'email:${empZoneClicked.email}`;
             document.querySelector("#profile_phone").textContent = `le telephone:${empZoneClicked.phone}`;
             document.querySelector("#profile_zone").textContent = `zone actuelle:${empZoneClicked.location}`;
+            for (let i = 0; i < empZoneClicked.experiences.length; i++) {
+                let li = document.createElement("li");
+                li.textContent = `${empZoneClicked.experiences[i].titre}: ${empZoneClicked.experiences[i].dateDebut}/${empZoneClicked.experiences[i].dateFin}`
+                document.querySelector("#ulEmployeZone").appendChild(li)
+            }
 
         }
 
@@ -432,6 +441,12 @@ Array.from(document.querySelectorAll(".unassigned_list")).forEach((unassigned) =
                 document.querySelector("#profileUnassigned_email").textContent = `l'email:${empll.email}`;
                 document.querySelector("#profileUnassigned_phone").textContent = `le telephone:${empll.phone}`;
                 document.querySelector("#profileUnassigned_zone").textContent = `zone actuelle:${empll.location}`;
+                document.querySelector("#ulEmployeUnassi").innerHTML = "";
+                for (let i = 0; i < empll.experiences.length; i++) {
+                    let li = document.createElement("li");
+                    li.textContent = `${empll.experiences[i].titre}: ${empll.experiences[i].dateDebut}/${empll.experiences[i].dateFin}`
+                    document.querySelector("#ulEmployeUnassi").appendChild(li)
+                }
 
             }
         })

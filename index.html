@@ -96,12 +96,13 @@
                     <h3>Experiences</h3>
                     <div class="experiences_div">
                         <input type="text" class="experience_titre" placeholder="Titre de poste">
-                        <input type="date" class="experience_debut" placeholder="Date de debut">
-                        <input type="date" class="experience_fin" placeholder="Date de fin">
+                        <input type="date" class="experience_debut hidden" placeholder="Date de debut">
+                        <input type="date" class="experience_fin hidden" placeholder="Date de fin">
                     </div>
                     <div id="experienceNouveau" style="width: 100%;">
 
                     </div>
+                    <h3 class="MsjDateExp hidden" style="background-color: white; border-radius: 12px; text-align: center; color: red;">la date de debut doit etre inferieure a date de fin </h3>
                     <button type="button" id="ajout_experience">Ajouter experience</button>
                 </div>
                 <button type="submit">Ajouter</button>
@@ -118,10 +119,10 @@
             <p id="profile_email"></p>
             <p id="profile_phone"></p>
             <p id="profile_zone"></p>
-            <!-- <div id="profile_experiences">
+            <div id="profile_experiences">
                 <h3>Expériences</h3>
-                <ul></ul>
-            </div> -->
+                <ul id="ulEmployeZone"></ul>
+            </div>
             <button id="btn_sortirZone" class="hidden" style="margin-top: 15px; width: 150px; height: 35px; border-radius: 10px; background-color: #628141; border: none; color: white;">Sortir</button>
         </div>
         <span id="profile_ferme">&times;</span>
@@ -130,16 +131,16 @@
     <!--********modal profile employee Unassigned*********-->
     <div id="modal_profileUnassigned" class="hidden">
         <div class="modalProfileUnassigned_contenu">
-            <img  id="profileUnassigned_photo" src="" style="width: 50px; height: 50px;  border-radius: 25px;" alt="Photo de l'employe">
+            <img  id="profileUnassigned_photo" src="" alt="Photo de l'employe">
             <h2 id="profileUnassigned_name"></h2>
             <p id="profileUnassigned_role"></p>
             <p id="profileUnassigned_email"></p>
             <p id="profileUnassigned_phone"></p>
             <p id="profileUnassigned_zone"></p>
-            <!-- <div id="profile_experiences">
+             <div id="profile_experiences">
                 <h3>Expériences</h3>
-                <ul></ul>
-            </div> -->
+                <ul id="ulEmployeUnassi"></ul>
+            </div>
         </div>
         <span id="profileUnassigned_ferme">&times;</span>
         
