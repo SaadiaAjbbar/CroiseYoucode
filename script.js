@@ -70,7 +70,7 @@ employee_form.addEventListener("submit", e => {
 
     let name = document.getElementById("name").value;
     let role = document.getElementById("role").value;
-    let url = document.getElementById("urlphoto").value;
+    let url = document.getElementById("imageInput").src;
     let email = document.getElementById("email").value;
     let phone = document.getElementById("phone").value;
     let id = 1;
@@ -126,7 +126,7 @@ urlphoto.addEventListener("input", () => {
     }
 
     previs_img.innerHTML = `
-      <img src="${url}" alt="Photo" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
+      <img id="imageInput" src="${url}" onerror="this.onerror=null; this.src='images/imgDefault.png'" alt="Photo" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
     `;
 });
 
@@ -443,6 +443,11 @@ Array.from(document.querySelectorAll(".unassigned_list")).forEach((unassigned) =
                 document.querySelector("#profileUnassigned_zone").textContent = `zone actuelle:${empll.location}`;
                 document.querySelector("#ulEmployeUnassi").innerHTML = "";
                 for (let i = 0; i < empll.experiences.length; i++) {
+                    // if(empll.experiences.length==0){
+                    // let li = document.createElement("li");
+                    // li.textContent = "pas dexperiences"
+                    // document.querySelector("#ulEmployeUnassi").appendChild(li)
+                    // }
                     let li = document.createElement("li");
                     li.textContent = `${empll.experiences[i].titre}: ${empll.experiences[i].dateDebut}/${empll.experiences[i].dateFin}`
                     document.querySelector("#ulEmployeUnassi").appendChild(li)
