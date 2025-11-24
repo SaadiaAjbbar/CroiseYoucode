@@ -533,9 +533,14 @@
 
     }
     .zone_liste img{
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
+        width: 70px;
+        height: 70px;
+        border-radius: 35px;
+    }
+    .img_AjoutZone{
+         width: 70px;
+        height: 70px;
+        border-radius: 35px;
     }
     .zone_liste_ajoutes {
         display: flex;
@@ -879,12 +884,13 @@
         align-items: center;
         padding: 0px 8px;
     }
-
+    .img_AjoutZone{
+        width: 30px; height: 30px;  border-radius: 25px;
+    }
     /* zones positions grides */
     #conference {
         grid-column: 1/5;
         grid-row: 1/2;
-
         width: 85%;
     }
 
@@ -892,8 +898,6 @@
         grid-column: 6/8;
         grid-row: 1/2;
         background-color: #ff00004b;
-
-
     }
 
     #securite {

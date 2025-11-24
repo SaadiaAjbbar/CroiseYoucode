@@ -70,7 +70,7 @@ employee_form.addEventListener("submit", e => {
 
     let name = document.getElementById("name").value;
     let role = document.getElementById("role").value;
-    let url = document.getElementById("imageInput").src;
+    let url = document.getElementById("urlphoto").value;
     let email = document.getElementById("email").value;
     let phone = document.getElementById("phone").value;
     let id = 1;
@@ -80,6 +80,8 @@ employee_form.addEventListener("submit", e => {
 
     if (url == "") {
         url = "images/imgDefault.png";
+    }else{
+        url = document.getElementById("imageInput").src;
     }
 
     const employee = {
@@ -348,26 +350,26 @@ employeeArr.forEach(emp => {
     } else if (emp.location == "conference") {
         let zoneConference = document.getElementById("conference");
         zoneConference.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" ></div>`)
         capaciteConfiance--;
     }
     else if (emp.location == "personnel") {
         let zonepersonnel = document.getElementById("personnel");
         zonepersonnel.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" ></div>`)
         capacitePresonnel--;
     }
     else if (emp.location == "serveur") {
         let zoneserveur = document.getElementById("serveur");
         zoneserveur.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" ></div>`)
         document.querySelector("#serveur").style.backgroundColor = "#ff000000";
         capaciteServeur--;
     }
     else if (emp.location == "securite") {
         let zonesecurite = document.getElementById("securite");
         zonesecurite.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" ></div>`)
 
         document.querySelector("#securite").style.backgroundColor = "#ff000000";
         capaciteSecurite--;
@@ -375,14 +377,14 @@ employeeArr.forEach(emp => {
     else if (emp.location == "reception") {
         let zonereception = document.getElementById("reception");
         zonereception.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" ></div>`)
         document.querySelector("#reception").style.backgroundColor = "#ff000000";
         capaciteReception--;
     }
     else if (emp.location == "archive") {
         let zonearchive = document.getElementById("archive");
         zonearchive.querySelector(".zone_liste_ajoutes").insertAdjacentHTML("beforeend",
-            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" style="width: 30px; height: 30px;  border-radius: 25px;"></div>`)
+            `<div><img src="${emp.url}" id="${emp.id}z" class="img_AjoutZone" ></div>`)
         document.querySelector("#archive").style.backgroundColor = "#ff000000";
         capaciteArchive--;
     }
