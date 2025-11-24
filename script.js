@@ -7,7 +7,6 @@ let capaciteSecurite = 3;
 let capaciteArchive = 3;
 let capaciteReception = 3;
 let capaciteServeur = 3;
-let pleine = false;
 let clickedAJOUTExp = false;
 
 // ***** LocalStorage *****
@@ -23,6 +22,7 @@ let zone_ajoute = document.querySelectorAll(".zone_ajoute");
 let ajout_experience = document.getElementById("ajout_experience");
 let experiencesContainer = document.getElementById("experiences");
 let experienceNouveau = document.getElementById("experienceNouveau");
+
 const experiences = [];
 ajout_experience.addEventListener("click", () => {
     if (clickedAJOUTExp == false) {
@@ -33,7 +33,6 @@ ajout_experience.addEventListener("click", () => {
             clickedAJOUTExp = true;
             document.querySelector(".experience_debut").classList.remove("hidden")
             document.querySelector(".experience_fin").classList.remove("hidden")
-
         }
     } else {
         if (document.querySelector(".experience_fin").value <= document.querySelector(".experience_debut").value || (document.querySelector(".experience_fin").value == "" && document.querySelector(".experience_debut").value == "")) {
@@ -44,26 +43,22 @@ ajout_experience.addEventListener("click", () => {
             let dateFin = document.querySelector(".experience_fin").value;
             experiences.push({ titre, dateDebut, dateFin });
             document.querySelector(".MsjDateExp").classList.add("hidden")
+            document.querySelector("#PasExperience").classList.add("hidden");
+            document.querySelector("#ExperiencesAjoutees").insertAdjacentHTML("beforeend",`
+                <div style="display:flex;justify-content:center;"><p>${titre} :</p><p>${dateDebut}/${dateFin}</p></div>
+                `)
             document.querySelector(".experience_titre").value = ""
-             document.querySelector(".experience_titre").placeholder = "Titre de l'autre poste"
-             document.querySelector(".experience_debut").value="";
-             document.querySelector(".experience_fin").value="";
+            document.querySelector(".experience_titre").placeholder = "Titre de l'autre poste"
+            document.querySelector(".experience_debut").value = "";
+            document.querySelector(".experience_fin").value = "";
             document.querySelector(".experience_debut").classList.add("hidden")
             document.querySelector(".experience_fin").classList.add("hidden")
             clickedAJOUTExp = false
 
         }
     }
-
-    /*
-    
-   
-    document.querySelectorAll(".experiences_div").forEach(div => {
-       
-    });
-
-    */
 });
+
 
 employee_form.addEventListener("submit", e => {
     e.preventDefault();
@@ -80,7 +75,7 @@ employee_form.addEventListener("submit", e => {
 
     if (url == "") {
         url = "images/imgDefault.png";
-    }else{
+    } else {
         url = document.getElementById("imageInput").src;
     }
 
