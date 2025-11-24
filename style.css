@@ -192,6 +192,9 @@
         background-color: #628141;
         color: #fff;
     }
+
+    .zone_liste_ajoutes img{width: 30px; height: 30px;  border-radius: 25px;
+    }
     /*modal_ajouter*/
      #modal_ajouter {
         grid-column: 1/4;
@@ -354,7 +357,376 @@
 
 }
 
-/********************************************************/
+
+
+/******************** tablette **********************/
+
+@media screen and (min-width: 768px)and (max-width: 1023px) {
+
+    .img_confere,
+    .img_reception,
+    .img_archive,
+    .img_personnel,
+    .img_serveur,
+    .img_securite {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+    }
+
+    body {
+        background-color: #EBD5AB;
+        color: whitesmoke;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+        gap: 20px;
+        margin: 20px;
+    }
+
+    #plan {
+        grid-column: 1/4;
+        grid-row: 1/2;
+        background-image: url(images/planMobil.png);
+        background-size: 100% 100%;
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+        position: relative;
+        background-repeat: no-repeat;
+
+    }
+
+    /* zones positions grides */
+    #conference {
+        grid-column: 1/2;
+        grid-row: 6/10;
+        border: 2px solid #22dce6;
+        max-height: 100%;
+        /* position: relative;
+        bottom: -20%; */
+    }
+
+    #serveur {
+        grid-column: 1/2;
+        grid-row: 3/5;
+        border: 2px solid #22dce6;
+        background-color: #ff00004b;
+    }
+
+    #securite {
+        grid-column: 1/2;
+        grid-row: 1/3;
+        border: 2px solid #22dce6;
+        background-color: #ff00004b;
+    }
+
+    #personnel {
+        grid-column: 2/4;
+        grid-row: 6/10;
+        border: 2px solid #22dce6;
+        
+    }
+
+    #reception {
+        grid-column: 3/4;
+        grid-row: 3/5;
+        border: 2px solid #22dce6;
+        background-color: #ff00004b;
+    }
+
+    #archive {
+        grid-column: 3/4;
+        grid-row: 1/2;
+        border: 2px solid #22dce6;
+        background-color: #ff00004b;
+    }
+
+    
+
+    /* SIDEBAR*/
+    #sidebar {
+        
+        grid-column: 1/4;
+        grid-row: 2/4;
+        width:90%;
+        height: 100%;
+        position: relative;
+        left: 5%;
+        background-color: #628141;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    #sidebar h2 {
+        font-size: 30px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    #Add_New_Worker {
+        cursor: pointer;
+        width: 50%;
+        position: relative;
+        left: 25%;
+        font-size: 20px;
+        height: 45px;
+        border-radius: 10px;
+        border: none;
+        background-color: #E67E22;
+        color: white;
+        margin-top: 10px;
+    }
+
+     .unassigned_list {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        font-size: 20px;
+        background-color: #ffffffe2;
+        border-radius: 10px;
+    }
+
+    .unassigned_list img {
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+
+    }
+
+    .unassigned_list p {
+        color: #000;
+        margin: 0 5px 0 5px;
+    }
+
+    .unassigned_list p strong {
+        color: #405518
+    }
+
+    .zone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding-top: 10px;
+    }
+
+    .zone_liste {
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(42, 95, 130, 0.3);
+        border-radius: 5px;
+        border: none;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        color: #fff;
+
+    }
+    .zone_liste img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+    }
+    .zone_liste_ajoutes {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+        background-color: #00000063;
+        border-radius: 7px;
+        align-items: center;
+        padding: 0px 8px;
+    }
+    .zone_liste_ajoutes img{
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+    }
+    .zone_ajoute {
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
+        border: none;
+        background-color: #628141;
+        color: #fff;
+    }
+    /*modal_ajouter*/
+     #modal_ajouter {
+        grid-column: 1/4;
+        grid-row: 2/3;
+        border-radius: 16px;
+        border: 1px solid #E67E22;
+        background-color: #E67E22;
+        width: 80%;
+        padding: 20px;
+        color: #fff;
+        position: fixed;
+        left: 10%;
+        top: 15%;
+    }
+
+    #modal_ajouter h2 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 12px;
+        color: #000;
+    }
+
+    #modal_ajouter input,
+    #modal_ajouter select {
+        width: 100%;
+        padding: 20px;
+        border-radius: 8px;
+        border: none;
+        margin-bottom: 12px;
+    }
+
+    #modal_ajouter button {
+        width: 80%;
+        background-color: #628141;
+        color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 10px;
+        font-size: 16px;
+        position: relative;
+        left: 10%;
+    }
+
+
+
+    #modal_ajouter button:hover {
+        background-color: #fff;
+        color: #628141;
+        border: 1px solid #fff;
+        transform: scale(1.02);
+
+    }
+
+
+    #modal_ferme {
+        cursor: pointer;
+        width: 100px;
+        height: 100px;
+        font-size: 30px;
+        font-weight: bold;
+        position: relative;
+        top: -100%;
+        right: -96%;
+        color: black;
+    }
+
+    #modal_ferme:hover {
+        color: #fff;
+        transform: scale(1.2);
+    }
+    /*modal_profileUnassigned*/
+    #modal_profileUnassigned {
+        grid-column: 1/4;
+        width: 80%;
+        min-height: 55%;
+        background-color: #E67E22;
+        position: fixed;
+        left: 10%;
+        top: 15%;
+        border-radius: 12px;
+
+    }
+
+    #profileUnassigned_ferme {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        cursor: pointer;
+        padding: 10px;
+        font-size: 36px;
+        color: #000;
+    }
+
+    .modalProfileUnassigned_contenu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        font-size: 24px;
+
+    }
+
+    
+    .modalProfileUnassigned_contenu img {
+        margin-top: 10px;
+        align-self: first baseline;
+        position: relative;
+        left: 10%;
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+    }
+    #profileUnassigned_name {
+        color: #000;
+    }
+
+    /*modal_profile*/
+     #modal_profile {
+        grid-column: 1/4;
+        width: 80%;
+        min-height: 55%;
+        background-color: #E67E22;
+        position: fixed;
+        left: 10%;
+        top: 15%;
+        border-radius: 12px;
+
+    }
+
+    #profile_ferme {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        cursor: pointer;
+        padding: 10px;
+        font-size: 36px;
+        color: #000;
+    }
+
+    .modalProfile_contenu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        font-size: 24px;
+    }
+     .modalProfile_contenu img {
+        margin-top: 10px;
+        align-self: first baseline;
+        position: relative;
+        left: 10%;
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+    }
+
+    #profile_name {
+        color: #000;
+    }
+
+}
+
 
 /******************** DESKTOP **********************/
 @media screen and (min-width: 1024px) {
