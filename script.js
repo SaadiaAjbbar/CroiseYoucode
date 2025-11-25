@@ -432,7 +432,6 @@ employeeArr.forEach(emp => {
 //affichage des profiles si clicke sur image dans une zone
 Array.from(document.querySelectorAll(".img_AjoutZone")).forEach(imgEmpZone => {
     imgEmpZone.addEventListener("click", (imgZoneclicked) => {
-        document.querySelector("#btn_sortirZone").classList.toggle("hidden")
         let modal_profile = document.querySelector("#modal_profile");
         modal_profile.classList.toggle("hidden")
         let imageZonechoosed = imgZoneclicked.currentTarget.id;
