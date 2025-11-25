@@ -44,7 +44,7 @@ ajout_experience.addEventListener("click", () => {
             experiences.push({ titre, dateDebut, dateFin });
             document.querySelector(".MsjDateExp").classList.add("hidden")
             document.querySelector("#PasExperience").classList.add("hidden");
-            document.querySelector("#ExperiencesAjoutees").insertAdjacentHTML("beforeend",`
+            document.querySelector("#ExperiencesAjoutees").insertAdjacentHTML("beforeend", `
                 <div style="display:flex;justify-content:center;"><p>${titre} :</p><p>${dateDebut}/${dateFin}</p></div>
                 `)
             document.querySelector(".experience_titre").value = ""
@@ -87,10 +87,10 @@ employee_form.addEventListener("submit", e => {
     url = "";
     employee_form.reset();
 
-    // garder seulement 1 bloc d'experience
-    document.querySelectorAll(".experiences_div").forEach((div, i) => {
-        if (i > 0) div.remove();
-    });
+    // // garder seulement 1 bloc d'experience
+    // document.querySelectorAll(".experiences_div").forEach((div, i) => {
+    //     if (i > 0) div.remove();
+    // });
 
     modal_ajouter.classList.add("hidden");
     location.reload()
@@ -131,6 +131,8 @@ urlphoto.addEventListener("input", () => {
 //***************************affichages des employes dans zones
 zone_ajoute.forEach(btn_ajout => {
     btn_ajout.addEventListener("click", () => {
+
+
         let sectionclicke = btn_ajout.parentElement;
         employeeArr.forEach(emp => {
 
@@ -139,6 +141,10 @@ zone_ajoute.forEach(btn_ajout => {
 
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
+                sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                    ` <span id="zone_listeFerme" style="color: aliceblue;cursor:pointer;width: 20%;height: 20%;">&times;</span> 
+                            `)
+                
                 //tout array dans div zone list dans conference
                 employeeArr.forEach(emp => {
                     if (emp.location == "unassigned") {
@@ -146,7 +152,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_confere" id="${emp.id}" >`)
                     }
                 });
-
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
+                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                })
+                sectionclicke.querySelector(".zone_liste").style.display="block"
                 //modifier location de employer et push dans localstorage
                 Array.from(document.querySelectorAll(".img_confere")).forEach(element => {
                     element.addEventListener("click", (imgConf) => {
@@ -169,6 +178,9 @@ zone_ajoute.forEach(btn_ajout => {
             if (sectionclicke.id == "personnel") {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
+                sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                    ` <span id="zone_listeFerme" style="color: aliceblue;cursor:pointer;width: 20%;height: 20%;">&times;</span> 
+                            `)
                 //tout array dans div zone list dans personnel
                 employeeArr.forEach(emp => {
                     if (emp.location == "unassigned") {
@@ -176,6 +188,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_personnel" id="${emp.id}" >`)
                     }
                 });
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
+                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                })
+                sectionclicke.querySelector(".zone_liste").style.display="block"
 
                 //tout array dans div zone list dans personnel
                 Array.from(document.querySelectorAll(".img_personnel")).forEach(element => {
@@ -197,6 +213,9 @@ zone_ajoute.forEach(btn_ajout => {
             if (sectionclicke.id == "serveur") {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
+                sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                    ` <span id="zone_listeFerme" style="color: aliceblue;cursor:pointer;width: 20%;height: 20%;">&times;</span> 
+                            `)
                 //tout array dans div zone list dans serveur
                 let resultsRolesServeur = employeeArr.filter((RolesServeur) => {
                     return RolesServeur.role == "Technicien IT" || RolesServeur.role == "Manager"
@@ -207,6 +226,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_serveur" id="${emp.id}" >`)
                     }
                 });
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
+                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                })
+                sectionclicke.querySelector(".zone_liste").style.display="block"
 
                 //tout array dans div zone list dans serveur
                 Array.from(document.querySelectorAll(".img_serveur")).forEach(element => {
@@ -228,6 +251,9 @@ zone_ajoute.forEach(btn_ajout => {
             if (sectionclicke.id == "securite") {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
+                sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                    ` <span id="zone_listeFerme" style="color: aliceblue;cursor:pointer;width: 20%;height: 20%;">&times;</span> 
+                            `)
                 //tout array dans div zone list dans securite
                 let resultsRolessecurite = employeeArr.filter((Rolessecurite) => {
                     return Rolessecurite.role == "Agent de securite" || Rolessecurite.role == "Manager"
@@ -238,6 +264,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_securite" id="${emp.id}" >`)
                     }
                 });
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
+                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                })
+                sectionclicke.querySelector(".zone_liste").style.display="block"
 
                 //tout array dans div zone list dans securite
                 Array.from(document.querySelectorAll(".img_securite")).forEach(element => {
@@ -259,6 +289,9 @@ zone_ajoute.forEach(btn_ajout => {
             if (sectionclicke.id == "reception") {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
+                sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                    ` <span id="zone_listeFerme" style="color: aliceblue;cursor:pointer;width: 20%;height: 20%;">&times;</span> 
+                            `)
                 //tout array dans div zone list dans reception
                 let resultsRolesreception = employeeArr.filter((Rolesreception) => {
                     return Rolesreception.role == "Receptionniste" || Rolesreception.role == "Manager"
@@ -269,6 +302,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_reception" id="${emp.id}" >`)
                     }
                 });
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
+                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                })
+                sectionclicke.querySelector(".zone_liste").style.display="block"
 
                 //tout array dans div zone list dans reception
                 Array.from(document.querySelectorAll(".img_reception")).forEach(element => {
@@ -290,6 +327,9 @@ zone_ajoute.forEach(btn_ajout => {
             if (sectionclicke.id == "archive") {
                 //vider div affichage
                 sectionclicke.querySelector(".zone_liste").innerHTML = ""
+                sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
+                    ` <span id="zone_listeFerme" style="color: aliceblue;cursor:pointer;width: 20%;height: 20%;">&times;</span> 
+                            `)
                 //tout array dans div zone list dans archive
                 let resultsRolesarchive = employeeArr.filter((Rolesarchive) => {
                     return Rolesarchive.role != "Nettoyage"
@@ -300,6 +340,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_archive" id="${emp.id}" >`)
                     }
                 });
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
+                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                })
+                sectionclicke.querySelector(".zone_liste").style.display="block"
 
                 //tout array dans div zone list dans archive
                 Array.from(document.querySelectorAll(".img_archive")).forEach(element => {
