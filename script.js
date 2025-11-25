@@ -17,8 +17,6 @@ let unassigned_lists = document.getElementById("unassigned_lists");
 
 let zone_ajoute = document.querySelectorAll(".zone_ajoute");
 
-
-// ***** Ajouter expérience dynamiquement *****
 let ajout_experience = document.getElementById("ajout_experience");
 let experiencesContainer = document.getElementById("experiences");
 let experienceNouveau = document.getElementById("experienceNouveau");
@@ -79,6 +77,23 @@ employee_form.addEventListener("submit", e => {
         url = document.getElementById("imageInput").src;
     }
 
+    //regex
+      if (!/^[A-Za-z ]{3,24}$/.test(name)) {
+        alert("Le nom doit contenir seulement des lettres !");
+        return;
+    }
+
+    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|fr|net|org)$/.test(email)) {
+        alert("Email invalide !");
+        return;
+    }
+
+    if (!/^[0-9]+$/.test(phone)) {
+        alert("Le numéro doit contenir seulement des chiffres !");
+        return;
+    }
+
+
     const employee = {
         id: id, name: name, role: role, url: url, email: email, phone: phone, experiences: experiences, location: "unassigned"
     };
@@ -86,11 +101,6 @@ employee_form.addEventListener("submit", e => {
     localStorage.setItem("emplyeItem", JSON.stringify(employeeArr));
     url = "";
     employee_form.reset();
-
-    // // garder seulement 1 bloc d'experience
-    // document.querySelectorAll(".experiences_div").forEach((div, i) => {
-    //     if (i > 0) div.remove();
-    // });
 
     modal_ajouter.classList.add("hidden");
     location.reload()
@@ -495,11 +505,7 @@ Array.from(document.querySelectorAll(".unassigned_list")).forEach((unassigned) =
                 document.querySelector("#profileUnassigned_zone").textContent = `zone actuelle:${empll.location}`;
                 document.querySelector("#ulEmployeUnassi").innerHTML = "";
                 for (let i = 0; i < empll.experiences.length; i++) {
-                    // if(empll.experiences.length==0){
-                    // let li = document.createElement("li");
-                    // li.textContent = "pas dexperiences"
-                    // document.querySelector("#ulEmployeUnassi").appendChild(li)
-                    // }
+                    
                     let li = document.createElement("li");
                     li.textContent = `${empll.experiences[i].titre}: ${empll.experiences[i].dateDebut}/${empll.experiences[i].dateFin}`
                     document.querySelector("#ulEmployeUnassi").appendChild(li)
