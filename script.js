@@ -144,7 +144,7 @@ zone_ajoute.forEach(btn_ajout => {
                 sectionclicke.querySelector(".zone_liste").insertAdjacentHTML("beforeend",
                     ` <span id="zone_listeFerme" style="color: aliceblue;cursor:pointer;width: 20%;height: 20%;">&times;</span> 
                             `)
-                
+
                 //tout array dans div zone list dans conference
                 employeeArr.forEach(emp => {
                     if (emp.location == "unassigned") {
@@ -152,10 +152,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_confere" id="${emp.id}" >`)
                     }
                 });
-                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
-                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click", () => {
+                    sectionclicke.querySelector(".zone_liste").style.display = "none"
                 })
-                sectionclicke.querySelector(".zone_liste").style.display="block"
+                sectionclicke.querySelector(".zone_liste").style.display = "block"
                 //modifier location de employer et push dans localstorage
                 Array.from(document.querySelectorAll(".img_confere")).forEach(element => {
                     element.addEventListener("click", (imgConf) => {
@@ -188,10 +188,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_personnel" id="${emp.id}" >`)
                     }
                 });
-                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
-                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click", () => {
+                    sectionclicke.querySelector(".zone_liste").style.display = "none"
                 })
-                sectionclicke.querySelector(".zone_liste").style.display="block"
+                sectionclicke.querySelector(".zone_liste").style.display = "block"
 
                 //tout array dans div zone list dans personnel
                 Array.from(document.querySelectorAll(".img_personnel")).forEach(element => {
@@ -226,10 +226,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_serveur" id="${emp.id}" >`)
                     }
                 });
-                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
-                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click", () => {
+                    sectionclicke.querySelector(".zone_liste").style.display = "none"
                 })
-                sectionclicke.querySelector(".zone_liste").style.display="block"
+                sectionclicke.querySelector(".zone_liste").style.display = "block"
 
                 //tout array dans div zone list dans serveur
                 Array.from(document.querySelectorAll(".img_serveur")).forEach(element => {
@@ -264,10 +264,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_securite" id="${emp.id}" >`)
                     }
                 });
-                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
-                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click", () => {
+                    sectionclicke.querySelector(".zone_liste").style.display = "none"
                 })
-                sectionclicke.querySelector(".zone_liste").style.display="block"
+                sectionclicke.querySelector(".zone_liste").style.display = "block"
 
                 //tout array dans div zone list dans securite
                 Array.from(document.querySelectorAll(".img_securite")).forEach(element => {
@@ -302,10 +302,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_reception" id="${emp.id}" >`)
                     }
                 });
-                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
-                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click", () => {
+                    sectionclicke.querySelector(".zone_liste").style.display = "none"
                 })
-                sectionclicke.querySelector(".zone_liste").style.display="block"
+                sectionclicke.querySelector(".zone_liste").style.display = "block"
 
                 //tout array dans div zone list dans reception
                 Array.from(document.querySelectorAll(".img_reception")).forEach(element => {
@@ -340,10 +340,10 @@ zone_ajoute.forEach(btn_ajout => {
                             `<img src="${emp.url}" class="img_archive" id="${emp.id}" >`)
                     }
                 });
-                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click",()=>{
-                    sectionclicke.querySelector(".zone_liste").style.display="none"
+                sectionclicke.querySelector("#zone_listeFerme").addEventListener("click", () => {
+                    sectionclicke.querySelector(".zone_liste").style.display = "none"
                 })
-                sectionclicke.querySelector(".zone_liste").style.display="block"
+                sectionclicke.querySelector(".zone_liste").style.display = "block"
 
                 //tout array dans div zone list dans archive
                 Array.from(document.querySelectorAll(".img_archive")).forEach(element => {
@@ -437,17 +437,29 @@ Array.from(document.querySelectorAll(".img_AjoutZone")).forEach(imgEmpZone => {
         let imageZonechoosed = imgZoneclicked.currentTarget.id;
         let empZoneClicked = employeeArr.find(emploClicked => emploClicked.id + "z" == imageZonechoosed);
         if (empZoneClicked) {
-            document.querySelector("#profile_photo").src = `${empZoneClicked.url}`;
-            document.querySelector("#profile_name").textContent = `${empZoneClicked.name}`;
-            document.querySelector("#profile_role").textContent = `le role:${empZoneClicked.role}`;
-            document.querySelector("#profile_email").textContent = `l'email:${empZoneClicked.email}`;
-            document.querySelector("#profile_phone").textContent = `le telephone:${empZoneClicked.phone}`;
-            document.querySelector("#profile_zone").textContent = `zone actuelle:${empZoneClicked.location}`;
-            for (let i = 0; i < empZoneClicked.experiences.length; i++) {
-                let li = document.createElement("li");
-                li.textContent = `${empZoneClicked.experiences[i].titre}: ${empZoneClicked.experiences[i].dateDebut}/${empZoneClicked.experiences[i].dateFin}`
-                document.querySelector("#ulEmployeZone").appendChild(li)
-            }
+            document.querySelector(".modalProfile_contenu").innerHTML = `
+                <img id="profile_photo" src="${empZoneClicked.url}" alt="Photo de l'employe">
+                <h2 id="profile_name">${empZoneClicked.name}</h2>
+                <p id="profile_role">le role: ${empZoneClicked.role}</p>
+                <p id="profile_email">l'email: ${empZoneClicked.email}</p>
+                <p id="profile_phone">le telephone: ${empZoneClicked.phone}</p>
+                <p id="profile_zone">zone actuelle:${empZoneClicked.location}</p>
+                <div id="profile_experiences">
+                    <h3>Expériences</h3>
+                        <ul id="ulEmployeZone">
+                         ${empZoneClicked.experiences.map(exp => `
+                        <li>${exp.titre}: ${exp.dateDebut} / ${exp.dateFin}</li>
+                         `).join("")}
+                        </ul>
+                </div>
+                <button id="btn_sortirZone" style="margin-top: 15px; width: 150px; height: 35px; border-radius: 10px; background-color: #628141; border: none; color: white;">
+                Sortir
+                </button>
+                
+            `
+
+
+
 
         }
 
